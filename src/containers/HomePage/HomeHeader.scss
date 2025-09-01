@@ -1,0 +1,55 @@
+.home-header-container {
+    height: 60px;
+    width: 100%;
+    padding: 0 20px;
+
+    .home-header-content {
+        width: 100%;
+        height: 100%;
+        display: flex;
+
+        .left-content {
+            width: 25%;
+            display: flex;
+            align-items: center;
+            border: solid 1px green;
+
+            .header-logo {
+                background: url('../../assets/genglol.png') center center no-repeat;
+                height: 100%;
+                width: 100%;
+                cursor: pointer;
+            }
+
+            i {
+                font-size: 25px;
+                color: grey;
+                cursor: pointer;
+
+            }
+        }
+
+        .center-content {
+            width: 50%;
+            border: solid 1px orange;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .child-content {
+                .subs-title {
+                    font-weight: 400;
+                    font-size: 12px;
+                }
+            }
+        }
+
+        .right-content {
+            width: 25%;
+            border: solid 1px gray;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
