@@ -1,7 +1,7 @@
 .home-header-container {
     height: 60px;
     width: 100%;
-    padding: 0 20px;
+    padding: 0 40px;
 
     .home-header-content {
         width: 100%;
@@ -9,16 +9,16 @@
         display: flex;
 
         .left-content {
-            width: 25%;
+            width: 20%;
             display: flex;
             align-items: center;
-            border: solid 1px green;
 
             .header-logo {
-                background: url('../../assets/genglol.png') center center no-repeat;
-                height: 100%;
-                width: 100%;
+                height: 203%;
+                width: 139%;
                 cursor: pointer;
+                transform: scale(0.5, 0.5);
+                margin-left: -27px;
             }
 
             i {
@@ -30,8 +30,7 @@
         }
 
         .center-content {
-            width: 50%;
-            border: solid 1px orange;
+            width: 55%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -46,16 +45,44 @@
 
         .right-content {
             width: 25%;
-            border: solid 1px gray;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-end;
+
+            .support {
+                padding-right: 50px;
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+
+                i {
+                    font-size: 15px;
+                    margin-right: 5px;
+                }
+            }
+
+            .language-vi {
+                cursor: pointer;
+
+                &.active {
+                    color: orange;
+                }
+            }
+
+            .language-en {
+                margin: 0 10px;
+                cursor: pointer;
+
+                &.active {
+                    color: blue;
+                }
+            }
         }
     }
 }
 
 .home-header-banner {
-    background: url("../../assets//HeaderBackground.jpg");
+    background-image: url("../../assets//HeaderBackground.jpg");
     height: 485px;
     background-repeat: no-repeat;
     background-size: cover;
@@ -64,9 +91,9 @@
     flex-direction: column;
 
     .content-up {
-        border: 1px solid red;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(255, 255, 255, 0.1));
         padding-top: 15px;
-        height: 50%;
+        height: 65%;
 
 
         .title1 {
@@ -94,6 +121,7 @@
             padding: 10px;
             border-radius: 25px;
             background: #f7d800;
+            width: fit-content;
 
             i {
                 margin: 0 5px;
@@ -110,8 +138,11 @@
     }
 
     .content-down {
-        border: 1px solid green;
-        height: 50%;
+        height: 35%;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 1));
 
         .option {
 
@@ -121,7 +152,6 @@
             justify-content: center;
 
             .option-child {
-                border: 1px solid red;
                 width: 100px;
 
                 .icon-child {
