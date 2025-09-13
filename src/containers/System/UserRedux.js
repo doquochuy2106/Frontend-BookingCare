@@ -18,7 +18,7 @@ class UserRedux extends Component {
         return (
             <div className='user-redux-container'>
                 <div className='title'>
-                    UserRedux DoQuocHuy
+                    User Redux Do Quoc Huy
                 </div>
                 <div className="user-redux-body" >
                     <div>
