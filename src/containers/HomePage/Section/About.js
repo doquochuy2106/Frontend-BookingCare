@@ -16,10 +16,10 @@ class About extends Component {
                         <iframe width="100%" height="400px"
                             src="https://www.youtube.com/embed/2BOvMHv6M_M"
                             title="GIẢI MÃ SỨC MẠNH CÁC ĐỘI TUYỂN TẠI MSI 2025: GEN.G - ỨNG CỬ VIÊN SỐ 1 CHO NGÔI VƯƠNG"
-                            frameborder="0"
+                            frameBorder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin"
-                            allowfullscreen>
+                            referrerPolicy="strict-origin-when-cross-origin"
+                            allowFullScreen>
                         </iframe>
                     </div>
                     <div className='content-right'>
