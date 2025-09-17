@@ -1,5 +1,5 @@
 import actionTypes from './actionTypes';
-import { getAllcodeService } from "../../services/userService"
+import { getAllcodeService, createNewUserService } from "../../services/userService"
 
 // export const fetchGenderStart = () => ({
 //     type: actionTypes.FETCH_GENDER_START
@@ -13,7 +13,6 @@ export const fetchGenderStart = () => {
 
             let res = await getAllcodeService("GENDER")
             if (res && res.errCode === 0) {
-                console.log("doquochuy check getstate: ", getState)
                 dispatch(fetchGenderSuccess(res.data))
             }
             else {
@@ -89,4 +88,33 @@ export const fetchRoleSuccess = (roleData) => ({
 
 export const fetchRoleFailed = () => ({
     type: actionTypes.FETCH_ROLE_FAILED
+})
+
+
+//CREATE
+export const createNewUser = (data) => {
+    return async (dispatch, getState) => {
+        try {
+            dispatch({ type: actionTypes.CREATE_USER_START })
+
+            let res = await createNewUserService(data)
+            console.log("doquochuy check create: ", res)
+            if (res && res.errCode === 0) {
+                dispatch(createNewUserSuccess())
+            }
+            else {
+                dispatch(createNewUserFailed())
+            }
+        } catch (e) {
+            dispatch(createNewUserFailed())
+        }
+    }
+}
+
+export const createNewUserSuccess = () => ({
+    type: actionTypes.CREATE_USER_SUCCESS
+})
+
+export const createNewUserFailed = () => ({
+    type: actionTypes.CREATE_USER_FAILED
 })
