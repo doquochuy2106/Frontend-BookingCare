@@ -26,9 +26,14 @@ class TableManageUser extends Component {
         }
     }
 
-    handleDelete = (userId) => {
+    handleDeleteUser = (userId) => {
         console.log("check delete: ", userId)
         this.props.deleteUserRedux(userId.id)
+    }
+
+    handleEditUser = (user) => {
+        console.log("check edit user: ", user)
+        this.props.editUserFromParent(user)
     }
 
 
@@ -62,8 +67,8 @@ class TableManageUser extends Component {
                                     <td>{item.roleId}</td>
                                     <td>{item.phonenumber}</td>
                                     <td>
-                                        <button className='btn-edit' ><i className="fas fa-pencil-alt"></i></button>
-                                        <button onClick={() => { this.handleDelete(item) }} className='btn-delete' ><i className="fas fa-trash"></i></button>
+                                        <button onClick={() => { this.handleEditUser(item) }} className='btn-edit' ><i className="fas fa-pencil-alt"></i></button>
+                                        <button onClick={() => { this.handleDeleteUser(item) }} className='btn-delete' ><i className="fas fa-trash"></i></button>
                                     </td>
                                 </tr>
                             )
