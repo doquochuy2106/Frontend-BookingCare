@@ -220,7 +220,7 @@ export const fetchTopDoctor = () => {
     return async (dispatch, getState) => {
         try {
             dispatch({ type: actionTypes.FETCH_TOP_DOCTOR_START })
-            let res = await getTopDoctorHome(2)
+            let res = await getTopDoctorHome(10)
             if (res && res.errCode === 0) {
                 dispatch({
                     type: actionTypes.FETCH_TOP_DOCTOR_SUCCESS,
