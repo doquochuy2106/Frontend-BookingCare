@@ -32,7 +32,6 @@ class DetailDoctor extends Component {
                     detailDoctor: response.data
                 })
             }
-            console.log("check api: ", response)
         }
     }
 
@@ -42,8 +41,6 @@ class DetailDoctor extends Component {
 
 
     render() {
-        console.log(this.props.match.params.id)
-        console.log("check state: ", this.state)
         let { language } = this.props
         let { detailDoctor } = this.state
         let nameVi = '', nameEn = ''
