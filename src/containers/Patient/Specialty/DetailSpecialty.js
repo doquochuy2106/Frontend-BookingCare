@@ -7,6 +7,9 @@ import HomeHeader from '../../HomePage/HomeHeader';
 import DoctorSchedule from '../Doctor/DoctorSchedule';
 import DoctorExtraInfo from '../Doctor/DoctorExtraInfo';
 import ProfileDoctor from '../Doctor/ProfileDoctor';
+import { getAllDetaiSpecialty, getAllcodeService } from '../../../services/userService';
+import _ from 'lodash';
+import { LANGUAGES } from '../../../utils';
 
 
 
@@ -18,13 +21,46 @@ class DetailSpecialty extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            arrDoctorId: [29, 28, 27]
+            arrDoctorId: [],
+            dataSpecialty: {},
+            listProvince: []
         }
     }
 
 
     async componentDidMount() {
+        if (this.props.match && this.props.match.params && this.props.match.params.id) {
+            let id = this.props.match.params.id
 
+            let res = await getAllDetaiSpecialty({
+                id: id,
+                location: 'ALL'
+            })
+
+            let resProvince = await getAllcodeService("PROVINCE")
+
+            if (res && res.errCode === 0 && resProvince.errCode === 0) {
+                let data = res.data
+                let arrDoctorId = []
+                if (data && !_.isEmpty(res.data)) {
+                    let arr = data.doctorSpecialty
+                    if (arr && arr.length > 0) {
+                        arr.map(item => {
+                            arrDoctorId.push(item.doctorId)
+                        })
+                    }
+                }
+                this.setState({
+                    dataSpecialty: res.data,
+                    arrDoctorId: arrDoctorId,
+                    listProvince: resProvince.data
+                })
+            }
+        }
+    }
+
+    handleOnchangeProvince = (event) => {
+        console.log("check onchange province: ", event.target.value)
     }
 
 
@@ -37,13 +73,34 @@ class DetailSpecialty extends Component {
 
 
     render() {
-        let { arrDoctorId } = this.state
+        let { arrDoctorId, dataSpecialty, listProvince } = this.state
+        let { language } = this.props
+        console.log("check state: ", this.state)
         return (
             <div className='detail-specialty-container'>
                 <HomeHeader />
                 <div className='detail-specialty-body'>
                     <div className='description-specialty'>
 
+                        {dataSpecialty && !_.isEmpty(dataSpecialty) &&
+                            <div dangerouslySetInnerHTML={{ __html: dataSpecialty.descriptionHTML }}>
+
+                            </div>
+                        }
+                    </div>
+                    <div className='search-sp-doctor'>
+                        <select onChange={(event) => { this.handleOnchangeProvince(event) }}>
+                            {listProvince && listProvince.length > 0 &&
+                                listProvince.map((item, index) => {
+                                    return (
+                                        <option
+                                            key={index}
+                                            value={item.keyMap}>
+                                            {language === LANGUAGES.VI ? item.valueVi : item.valueEn}</option>
+                                    )
+                                })
+                            }
+                        </select>
                     </div>
                     {arrDoctorId && arrDoctorId.length > 0 &&
                         arrDoctorId.map((item, index) => {
@@ -60,7 +117,6 @@ class DetailSpecialty extends Component {
                                         <div className='doctor-shedule'>
                                             <DoctorSchedule
                                                 doctorIdFromParent={item}
-
                                             />
                                         </div>
                                         <div className='doctor-extra-infor'>
