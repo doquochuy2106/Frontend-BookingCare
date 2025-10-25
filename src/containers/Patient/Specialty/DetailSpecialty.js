@@ -50,17 +50,58 @@ class DetailSpecialty extends Component {
                         })
                     }
                 }
+
+                let dataProvince = resProvince.data
+                if (dataProvince && dataProvince.length > 0) {
+                    dataProvince.unshift({
+                        keyMap: "All",
+                        type: "PROVINCE",
+                        valueEn: "All",
+                        valueVi: "Toàn quốc",
+                        createdAt: null,
+                    })
+                }
+
                 this.setState({
                     dataSpecialty: res.data,
                     arrDoctorId: arrDoctorId,
-                    listProvince: resProvince.data
+                    listProvince: dataProvince ? dataProvince : []
                 })
             }
         }
     }
 
-    handleOnchangeProvince = (event) => {
-        console.log("check onchange province: ", event.target.value)
+    handleOnchangeProvince = async (event) => {
+        if (this.props.match && this.props.match.params && this.props.match.params.id) {
+            let id = this.props.match.params.id
+            let location = event.target.value
+
+            let res = await getAllDetaiSpecialty({
+                id: id,
+                location: location
+            })
+
+
+
+            if (res && res.errCode === 0) {
+                let data = res.data
+                let arrDoctorId = []
+                if (data && !_.isEmpty(res.data)) {
+                    let arr = data.doctorSpecialty
+                    if (arr && arr.length > 0) {
+                        arr.map(item => {
+                            arrDoctorId.push(item.doctorId)
+                        })
+                    }
+                }
+
+                this.setState({
+                    dataSpecialty: res.data,
+                    arrDoctorId: arrDoctorId
+                })
+            }
+
+        }
     }
 
 
@@ -110,9 +151,12 @@ class DetailSpecialty extends Component {
                                         <ProfileDoctor
                                             doctorId={item}
                                             isShowDescriuptionDoctor={true}
+                                            isShowLinkDetail={true}
+                                            isShowPrice={false}
                                         // dataScheduleTime={dataScheduleTime}
                                         />
                                     </div>
+
                                     <div className='dt-content-right'>
                                         <div className='doctor-shedule'>
                                             <DoctorSchedule
