@@ -39,9 +39,9 @@ class HomePage extends Component {
                 <OutStandingDoctor
                     settings={settings}
                 />
-                <HandBook
+                {/* <HandBook
                     settings={settings}
-                />
+                /> */}
                 <About />
                 <HomeFooter />
             </div>
